@@ -8,7 +8,7 @@
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">jython 3.0</pydev_property>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Jython</pydev_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
-<path>/Users/Tim/Documents/Java/SocketCommunicator/bin</path>
-<path>/Users/Tim/Documents/Java/MTRoboLib/bin</path>
+<path>/Users/Tim/git/MTTTS/MTRoboLib/bin</path>
+<path>/Users/Tim/git/MTTTS/SocketCommunicator/bin</path>
 </pydev_pathproperty>
 </pydev_project>

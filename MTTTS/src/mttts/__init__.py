@@ -8,6 +8,7 @@ while(True):
 	s.start()
 	while(s.isConnected()):
 		event = s.receive()
+		print(event)
 		if(event==0):
 			r.click(0)
 		elif(event==1): # Mouse Move
