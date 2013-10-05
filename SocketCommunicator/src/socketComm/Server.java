@@ -5,23 +5,30 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Server {
-	private int localCode, remoteCode;
+	private int localCode, remoteCode, port;
 	private ServerSocket ss;
 	private Socket s;
+	private DatagramSocket ds;
 	private DataOutputStream out;
 	private DataInputStream in;
 	private boolean connected;
+	public static enum protocol{TCP, UDP};
+	private protocol p;
 	
-	public Server(int port, int localCode, int remoteCode)
+	public Server(int port, int localCode, int remoteCode) // TCP by default
 	{
 		// Set up variables
 		this.localCode = localCode;
 		this.remoteCode = remoteCode;
+		this.port = port;
 		connected = false;
+		p = protocol.TCP;
 		
 		try {
 			ss = new ServerSocket(port);
@@ -30,7 +37,47 @@ public class Server {
 		}
 	}
 	
+	public Server(int port, int localCode, int remoteCode, protocol p) // Choose between TCP and UDP
+	{
+		// Set up variables
+		this.localCode = localCode;
+		this.remoteCode = remoteCode;
+		connected = false;
+		this.p = p;
+		
+		if (p==protocol.TCP)
+		{
+			try {
+				ss = new ServerSocket(port);	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void start()
+	{
+		if (p==protocol.TCP)
+			startTCP();
+		else if (p==protocol.UDP)
+			startUDP();
+	}
+	
+	private void startUDP()
+	{
+		System.out.println("Server started");
+		
+		try {
+			ds = new DatagramSocket(port);
+			
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void startTCP()
 	{
 		try {
 			

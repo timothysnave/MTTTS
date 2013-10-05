@@ -1,7 +1,7 @@
 from socketComm import *
 from mtRoboLib import *
 
-s = Server(12345, 1245567, 1245563)
+s = Server(12345, 1245567, 1245563, Server.protocol.UDP)
 r = MTRobo()
 
 while(True):
